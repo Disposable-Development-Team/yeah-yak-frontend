@@ -8,6 +8,21 @@ const fontSize = {
   xxxl: '1.875rem',
 };
 
+const buttonSize = {
+  small: {
+    height: '1.75rem',
+    'font-size': '0.875rem',
+  },
+  medium: {
+    height: '2.25rem',
+    'font-size': '1rem',
+  },
+  large: {
+    height: '3rem',
+    'font-size': '1.25rem',
+  },
+};
+
 const colors = {
   deepgreen: '#014034',
   neongreen: '#91D9C4',
@@ -18,6 +33,7 @@ const colors = {
 
 const theme = {
   fontSize,
+  buttonSize,
   colors,
 };
 

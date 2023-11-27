@@ -1,27 +1,35 @@
 import styled, { css } from 'styled-components';
 import { darken, lighten } from 'polished';
 
+const defaultProps = {
+  color: 'deepgreen',
+  size: 'medium',
+  outline: false,
+};
+
 const colorStyles = css`
-  /*색상 */
+  /* 색상 */
   ${({ theme, color }) => {
-    const selected = theme.colors[color];
+    const selectedColor =
+      theme.colors[color] || theme.colors[defaultProps.color];
 
     return css`
-      background: ${selected};
+      background: ${selectedColor};
       &:hover {
-        background: ${lighten(0.1, selected)};
+        background: ${lighten(0.1, selectedColor)};
       }
       &:active {
-        background: ${darken(0.1, selected)};
+        background: ${darken(0.1, selectedColor)};
       }
+
       ${props =>
         props.outline &&
         css`
-          color: ${selected};
+          color: ${selectedColor};
           background: none;
-          border: 1px solid ${selected};
+          border: 1px solid ${selectedColor};
           &:hover {
-            background: ${selected};
+            background: ${selectedColor};
             color: white;
           }
         `}
@@ -31,24 +39,14 @@ const colorStyles = css`
 
 const sizeStyles = css`
   /*크기*/
-  ${props =>
-    props.size === 'large' &&
-    css`
-      height: 3rem;
-      font-size: 1.25rem;
-    `}
-  ${props =>
-    props.size === 'medium' &&
-    css`
-      height: 2.25rem;
-      font-size: 1rem;
-    `}
-    ${props =>
-    props.size === 'small' &&
-    css`
-      height: 1.75rem;
-      font-size: 0.875rem;
-    `}
+  ${({ theme, size }) => {
+    const selectedSize =
+      theme.buttonSize[size] || theme.buttonSize[defaultProps.size];
+    console.log(selectedSize);
+    return css`
+      ${selectedSize}
+    `;
+  }}
 `;
 
 const fullWidthStyle = css`
@@ -89,10 +87,6 @@ function Button({ children, ...rest }) {
   return <StyledButton {...rest}>{children}</StyledButton>;
 }
 
-Button.defaultProps = {
-  color: 'deepgreen',
-  size: 'medium',
-  outline: false,
-};
+Button.defaultProps = defaultProps;
 
 export default Button;
