@@ -10,7 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "styled-components": "^6.1.1",
     "web-vitals": "^2.1.4"
   },
@@ -24,6 +24,17 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.js",
+          "**/*.test.jsx"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
     ]
   },
   "browserslist": {
@@ -40,6 +51,9 @@
   },
   "devDependencies": {
     "customize-cra": "^1.0.0",
+    "eslint": "^8.54.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-jest": "^27.6.0",
     "react-app-rewired": "^2.2.1"
   }
 }
