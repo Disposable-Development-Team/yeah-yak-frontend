@@ -2,6 +2,7 @@ export default function Reservation() {
   const SelectBox = () => {
     return (
       <select>
+        <option key="" value=""></option>
         <option key="" value="">1층 J4</option>
         <option key="" value="">3층 소회의실</option>
         <option key="" value="">기업지원허브</option>
