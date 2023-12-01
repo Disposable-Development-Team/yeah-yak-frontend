@@ -17,10 +17,10 @@ export default function Reservation() {
         <b>이름</b><input />
       </div>
       <div>
-        <b>시작일자</b><input />
+        <b>시작일자</b><input type="date"></input>
       </div>
       <div>
-        <b>종료일자</b><input />
+        <b>종료일자</b><input type="date"></input>
       </div>
       <div>
         <b>예약장소</b><SelectBox />
