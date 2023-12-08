@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Link to="/">
-          <Button outline>홈</Button>
+          <Button $outline>홈</Button>
         </Link>
         <Link to="/reservation">
           <Button>예약하기</Button>
