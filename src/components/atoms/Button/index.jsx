@@ -4,14 +4,13 @@ import { darken, lighten } from 'polished';
 const defaultProps = {
   color: 'deepgreen',
   size: 'medium',
-  outline: false,
+  $outline: false,
 };
 
 const colorStyles = css`
   /* 색상 */
   ${({ theme, color }) => {
-    const selectedColor =
-      theme.colors[color] || theme.colors[defaultProps.color];
+    const selectedColor = theme.colors[color] || theme.colors[defaultProps.color];
 
     return css`
       background: ${selectedColor};
@@ -23,7 +22,7 @@ const colorStyles = css`
       }
 
       ${props =>
-        props.outline &&
+        props.$outline &&
         css`
           color: ${selectedColor};
           background: none;
@@ -40,9 +39,7 @@ const colorStyles = css`
 const sizeStyles = css`
   /*크기*/
   ${({ theme, size }) => {
-    const selectedSize =
-      theme.buttonSize[size] || theme.buttonSize[defaultProps.size];
-    console.log(selectedSize);
+    const selectedSize = theme.buttonSize[size] || theme.buttonSize[defaultProps.size];
     return css`
       ${selectedSize}
     `;
