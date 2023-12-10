@@ -2,6 +2,7 @@
 import { Route, Routes, Link } from 'react-router-dom';
 import Calendar from '@templates/Calendar';
 import Confirm from '@templates/Admin/Confirm';
+import Reservation from '@modules/Reservation';
 
 import theme from '@styles/theme';
 import { ThemeProvider } from 'styled-components';
@@ -23,7 +24,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Calendar />} />
-          <Route path="/reservation" element={<Calendar />} />
+          <Route path="/reservation" element={<Reservation />} />
           <Route path="/admin/confirm" element={<Confirm />} />
         </Routes>
       </ThemeProvider>
