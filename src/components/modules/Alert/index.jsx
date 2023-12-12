@@ -14,7 +14,7 @@ export default function Alert() {
         <Input hasInput={true} isReadOnly={false} placeholder="전화번호" />
       </div>
       <div>
-        <Button></Button>
+        <Button/>
       </div>
     </div>
   );
