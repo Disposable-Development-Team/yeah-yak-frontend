@@ -10,7 +10,7 @@ export default function Header() {
         src="https://via.placeholder.com/300x200.png?text=SONGJOOWON"
         link="https://github.com/Disposable-Development-Team/yeah-yak-frontend"
       />
-      <Button/>
+      <Button>예약현황</Button>
     </div>
   );
 }

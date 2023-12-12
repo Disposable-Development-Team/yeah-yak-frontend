@@ -1,10 +1,12 @@
 import Button from "@atoms/Button";
 import Input from "@atoms/Input";
 import Paragraph from "@atoms/Paragraph";
+import Header from "@modules/Header";
 
 export default function Reservation() {
   return (
     <div>
+      <Header/>
       <div>
         <Paragraph size="24px" weight="bold">예약하기</Paragraph>
         <Paragraph size="24px" weight="bold">합주실</Paragraph>
