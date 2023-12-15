@@ -17,9 +17,6 @@ function App() {
           <Link to="/">
             <Button $outline>홈</Button>
           </Link>
-          <Link to="/reservation">
-            <Button>예약하기</Button>
-          </Link>
           <Link to="/admin/confirm">
             <Button color="red">관리자 화면</Button>
           </Link>
