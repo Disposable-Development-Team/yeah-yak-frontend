@@ -6,8 +6,8 @@ const StyledImage = styled.div`
   }
 
   img {
-    width: 100px;
-    height: 100px;
+    width: ${(props) => props.width}px;
+    height: ${(props) => props.height}px;
   }
 `;
 
