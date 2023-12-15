@@ -1,18 +1,28 @@
+import styled from 'styled-components';
+
+const StyledImage = styled.div`
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
 const Image = (props) => {
-  // props에서 필요한 값들을 가져오기
   const { width, height, src, link } = props;
 
   return (
-    <div>
-      {/* 이미지 및 링크 표시 */}
+    <StyledImage width={width} height={height}>
       <a href={link} target="_blank" rel="noopener noreferrer">
         <img
           src={src}
           alt="이미지"
-          style={{ width: width, height: height }}
         />
       </a>
-    </div>
+    </StyledImage>
   );
 };
 
