@@ -18,10 +18,10 @@ export default function Reservation() {
         <Input hasInput={true} isReadOnly={false} placeholder="YYYY-MM-DD"/>
       </div>
       <div>
-        <Input hasInput={true} isReadOnly={false} placeholder="예약자명" />
+        <Input hasInput={true} isReadOnly={false} placeholder="예약자명"/>
       </div>
       <div>
-        <Input hasInput={true} isReadOnly={false} placeholder="전화번호" />
+        <Input hasInput={true} isReadOnly={false} placeholder="전화번호"/>
       </div>
       <div>
         <Button>신청</Button>

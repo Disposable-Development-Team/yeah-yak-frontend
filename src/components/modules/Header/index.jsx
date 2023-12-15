@@ -1,9 +1,14 @@
-import Image from "@atoms/Image";
-import Button from "@atoms/Button";
+import styled from 'styled-components';
+import Image from '@atoms/Image';
+import Button from '@atoms/Button';
 
-export default function Header() {
-  return(
-    <div>
+const StyledHeader = styled.div`
+  text-align: center;
+`;
+
+const Header = () => {
+  return (
+    <StyledHeader>
       <Image
         width="300px"
         height="200px"
@@ -11,6 +16,8 @@ export default function Header() {
         link="https://github.com/Disposable-Development-Team/yeah-yak-frontend"
       />
       <Button>예약현황</Button>
-    </div>
+    </StyledHeader>
   );
-}
+};
+
+export default Header;
