@@ -9,7 +9,7 @@ export default function Confirm() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://140.238.0.188:3001/reservations');
+      const response = await axios.get('http://140.238.0.188:8080/reservations');
       setReservationData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);

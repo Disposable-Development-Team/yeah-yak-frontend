@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { FlexContainer } from '@atoms/Flex';
+import { useModalContext } from './ModalContext';
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -20,7 +21,7 @@ const ModalContent = styled.div`
   background: #fff;
   padding: 20px;
   border-radius: 8px;
-  width: 400px; /* Adjust the width as needed */
+  width: ${props => props.width || '400px'};
 `;
 
 const ModalHeader = styled(FlexContainer)`
@@ -37,12 +38,13 @@ const ModalCloseButton = styled.button`
   cursor: pointer;
 `;
 
-const Modal = ({ isOpen, onClose, hasButton = true, title, children }) => {
+const Modal = ({ hasButton = true, title, children, ...props }) => {
+  const { modalOpen, openModal, closeModal } = useModalContext();
   const modalRef = useRef();
 
   const handleCloseModal = e => {
     if (modalRef.current && !modalRef.current?.contains(e.target)) {
-      onClose();
+      closeModal();
     }
   };
 
@@ -53,16 +55,16 @@ const Modal = ({ isOpen, onClose, hasButton = true, title, children }) => {
     };
   }, [handleCloseModal]);
 
-  if (!isOpen) {
+  if (!modalOpen) {
     return null;
   }
 
   return (
     <ModalWrapper>
-      <ModalContent className="modal-content" ref={modalRef}>
+      <ModalContent className="modal-content" ref={modalRef} width={props.width}>
         <ModalHeader $justifyContent="space-between" $alignItems="center">
           <ModalTitle>{title}</ModalTitle>
-          {hasButton && <ModalCloseButton onClick={onClose}>Close</ModalCloseButton>}
+          {hasButton && <ModalCloseButton onClick={closeModal}>Close</ModalCloseButton>}
         </ModalHeader>
         {children}
       </ModalContent>
