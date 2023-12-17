@@ -42,18 +42,17 @@ const Modal = ({ hasButton = true, title, children, ...props }) => {
   const { modalOpen, openModal, closeModal } = useModalContext();
   const modalRef = useRef();
 
-  const handleCloseModal = e => {
-    if (modalRef.current && !modalRef.current?.contains(e.target)) {
-      closeModal();
-    }
-  };
-
   useEffect(() => {
+    const handleCloseModal = e => {
+      if (modalRef.current && !modalRef.current?.contains(e.target)) {
+        closeModal();
+      }
+    };
     document.addEventListener('mousedown', handleCloseModal);
     return () => {
       document.removeEventListener('mousedown', handleCloseModal);
     };
-  }, [handleCloseModal]);
+  }, [closeModal]);
 
   if (!modalOpen) {
     return null;

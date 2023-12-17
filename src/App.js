@@ -1,7 +1,7 @@
 // react router
 import { Route, Routes, Link } from 'react-router-dom';
 import Main from '@templates/Main';
-import Confirm from '@templates/Admin/Confirm';
+import Admin from '@templates/Admin';
 import Reservation from '@templates/Reservation';
 
 import theme from '@styles/theme';
@@ -24,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/reservation" element={<Reservation />} />
-            <Route path="/admin/confirm" element={<Confirm />} />
+            <Route path="/admin/confirm" element={<Admin />} />
           </Routes>
         </ThemeProvider>
       </ModalProvider>
