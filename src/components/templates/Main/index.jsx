@@ -5,6 +5,7 @@ import Calendar from '@modules/Calendar';
 import Reservation from '@templates/Reservation';
 import { useModalContext } from '@modules/Modal/ModalContext';
 import dateFormat from 'dateformat';
+import Header from '@modules/Header';
 
 export default function Main() {
   const [values, setValues] = useState({
@@ -41,6 +42,9 @@ export default function Main() {
   return (
     <div>
       <FlexContainer $justifyContent="center" $alignItems="center" $gap="2rem">
+        <FlexItem $flex="1 1 100%">
+          <Header />
+        </FlexItem>
         <FlexItem $flex="1 1 100%">
           <Calendar onSelectSlot={handleSelect} />
         </FlexItem>

@@ -3,6 +3,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import Main from '@templates/Main';
 import Admin from '@templates/Admin';
 import Reservation from '@templates/Reservation';
+import '@styles/main.css';
 
 import theme from '@styles/theme';
 import { ThemeProvider } from 'styled-components';
