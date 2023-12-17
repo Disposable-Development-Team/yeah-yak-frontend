@@ -1,11 +1,8 @@
 import Button from '@atoms/Button';
 import { FlexContainer } from '@atoms/Flex';
 import Input from '@atoms/Input';
-import Paragraph from '@atoms/Paragraph';
 import Form from '@modules/Form';
-import Header from '@modules/Header';
 import Modal from '@modules/Modal';
-import { useState } from 'react';
 
 export default function Reservation({ values, onChange }) {
   const handleSubmit = e => {
