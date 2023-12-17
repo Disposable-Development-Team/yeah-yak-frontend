@@ -1,20 +1,33 @@
+// react router
+import { Route, Routes, Link } from 'react-router-dom';
+import Main from '@templates/Main';
+import Confirm from '@templates/Admin/Confirm';
+import Reservation from '@templates/Reservation';
+
 import theme from '@styles/theme';
 import { ThemeProvider } from 'styled-components';
+import { ModalProvider } from '@modules/Modal/ModalContext';
 import Button from '@atoms/Button';
 
 function App() {
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <header className="App-header"></header>
-        <div>
-          <Button>버튼1</Button>
-          <Button color="green">버튼2</Button>
-          <Button color="yellow">버튼3</Button>
-          <Button color="red">버튼4</Button>
-          <Button outline>버튼5</Button>
-        </div>
-      </ThemeProvider>
+      <ModalProvider>
+        <ThemeProvider theme={theme}>
+          <Link to="/">
+            <Button $outline>홈</Button>
+          </Link>
+          <Link to="/admin/confirm">
+            <Button color="red">관리자 화면</Button>
+          </Link>
+
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/reservation" element={<Reservation />} />
+            <Route path="/admin/confirm" element={<Confirm />} />
+          </Routes>
+        </ThemeProvider>
+      </ModalProvider>
     </div>
   );
 }
