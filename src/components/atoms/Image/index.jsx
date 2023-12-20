@@ -11,7 +11,7 @@ const StyledImage = styled.div`
 const Image = ({ width, height, src, link, newPage, ...props }) => {
   return (
     <StyledImage width={width} height={height}>
-      <Link href={link || '#'}>
+      <Link to={link || '#'}>
         <img src={src} alt="이미지" />
       </Link>
     </StyledImage>
