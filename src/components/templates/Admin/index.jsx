@@ -1,7 +1,7 @@
 // TableWithApi.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, generateTableHeaders, renderTableData } from '@modules/Table';
+import Table from '@modules/Table';
 import Button from '@atoms/Button';
 
 export default function Confirm() {
@@ -23,10 +23,7 @@ export default function Confirm() {
   return (
     <div>
       <Button onClick={fetchData}>새로고침</Button>
-      <Table>
-        <thead>{generateTableHeaders(reservationData)}</thead>
-        <tbody>{renderTableData(reservationData)}</tbody>
-      </Table>
+      <Table data={reservationData} />
     </div>
   );
 }

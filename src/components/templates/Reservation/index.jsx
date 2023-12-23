@@ -11,7 +11,7 @@ export default function Reservation({ values, onChange }) {
   };
 
   return (
-    <Modal title={'예약하기'} width={'80%'}>
+    <Modal modalId="reservation" title={'예약하기'} width={'80%'}>
       <Form submitHandler={handleSubmit}>
         <FlexContainer $noWrap $gap="0" $justifyContent="space-evenly">
           <Input type="date" label="시작일" value={values.startDate} onChange={onChange} readOnly />

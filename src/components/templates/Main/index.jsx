@@ -36,7 +36,7 @@ export default function Main() {
       // startDate: start,
       // endDate: end,
     });
-    openModal();
+    openModal('reservation');
   };
 
   return (

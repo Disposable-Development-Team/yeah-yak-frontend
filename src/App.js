@@ -2,8 +2,8 @@
 import { Route, Routes, Link } from 'react-router-dom';
 import Main from '@templates/Main';
 import Admin from '@templates/Admin';
-import Reservation from '@templates/Reservation';
 import '@styles/main.css';
+import ReservationHistory from '@templates/ReservationHistory';
 
 import theme from '@styles/theme';
 import { ThemeProvider } from 'styled-components';
@@ -18,14 +18,14 @@ function App() {
           <Link to="/">
             <Button $outline>홈</Button>
           </Link>
-          <Link to="/admin/confirm">
+          <Link to="/admin">
             <Button color="red">관리자 화면</Button>
           </Link>
 
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/reservation" element={<Reservation />} />
-            <Route path="/admin/confirm" element={<Admin />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/reservations/history" element={<ReservationHistory />} />
           </Routes>
         </ThemeProvider>
       </ModalProvider>
