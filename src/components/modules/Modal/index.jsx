@@ -38,24 +38,23 @@ const ModalCloseButton = styled.button`
   cursor: pointer;
 `;
 
-const Modal = ({ hasButton = true, title, children, ...props }) => {
-  const { modalOpen, openModal, closeModal } = useModalContext();
+const Modal = ({ modalId, hasButton = true, title, children, ...props }) => {
+  const { isModalOpen, openModal, closeModal } = useModalContext();
   const modalRef = useRef();
 
-  const handleCloseModal = e => {
-    if (modalRef.current && !modalRef.current?.contains(e.target)) {
-      closeModal();
-    }
-  };
-
   useEffect(() => {
+    const handleCloseModal = e => {
+      if (modalRef.current && !modalRef.current?.contains(e.target)) {
+        closeModal(modalId);
+      }
+    };
     document.addEventListener('mousedown', handleCloseModal);
     return () => {
       document.removeEventListener('mousedown', handleCloseModal);
     };
-  }, [handleCloseModal]);
+  }, [closeModal, modalId]);
 
-  if (!modalOpen) {
+  if (!isModalOpen(modalId)) {
     return null;
   }
 
@@ -64,7 +63,7 @@ const Modal = ({ hasButton = true, title, children, ...props }) => {
       <ModalContent className="modal-content" ref={modalRef} width={props.width}>
         <ModalHeader $justifyContent="space-between" $alignItems="center">
           <ModalTitle>{title}</ModalTitle>
-          {hasButton && <ModalCloseButton onClick={closeModal}>Close</ModalCloseButton>}
+          {hasButton && <ModalCloseButton onClick={() => closeModal(modalId)}>Close</ModalCloseButton>}
         </ModalHeader>
         {children}
       </ModalContent>

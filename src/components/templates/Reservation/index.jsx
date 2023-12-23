@@ -1,11 +1,8 @@
 import Button from '@atoms/Button';
 import { FlexContainer } from '@atoms/Flex';
 import Input from '@atoms/Input';
-import Paragraph from '@atoms/Paragraph';
 import Form from '@modules/Form';
-import Header from '@modules/Header';
 import Modal from '@modules/Modal';
-import { useState } from 'react';
 
 export default function Reservation({ values, onChange }) {
   const handleSubmit = e => {
@@ -14,7 +11,7 @@ export default function Reservation({ values, onChange }) {
   };
 
   return (
-    <Modal title={'예약하기'} width={'80%'}>
+    <Modal modalId="reservation" title={'예약하기'} width={'80%'}>
       <Form submitHandler={handleSubmit}>
         <FlexContainer $noWrap $gap="0" $justifyContent="space-evenly">
           <Input type="date" label="시작일" value={values.startDate} onChange={onChange} readOnly />
