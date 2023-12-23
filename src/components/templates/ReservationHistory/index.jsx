@@ -1,12 +1,16 @@
 // TableWithApi.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, generateTableHeaders, renderTableData } from '@modules/Table';
+import Table from '@modules/Table';
 import Button from '@atoms/Button';
 import Header from '@modules/Header';
 import { FlexContainer, FlexItem } from '@atoms/Flex';
+import { useLocation } from 'react-router';
 
-export default function ReservationHistory({ name, phoneNumber }) {
+export default function ReservationHistory(props) {
+  const { state } = useLocation();
+  const { data, name, phoneNumber } = state;
+
   const [reservationData, setReservationData] = useState([]);
 
   const fetchData = async () => {
@@ -30,10 +34,7 @@ export default function ReservationHistory({ name, phoneNumber }) {
         <Header />
       </FlexItem>
       <Button onClick={fetchData}>새로고침</Button>
-      <Table>
-        <thead>{generateTableHeaders(reservationData)}</thead>
-        <tbody>{renderTableData(reservationData)}</tbody>
-      </Table>
+      <Table data={data} />
     </FlexContainer>
   );
 }
