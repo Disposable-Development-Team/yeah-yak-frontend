@@ -18,7 +18,7 @@ function App() {
           <Link to="/">
             <Button $outline>홈</Button>
           </Link>
-          <Link to="/admin/confirm">
+          <Link to="/admin">
             <Button color="red">관리자 화면</Button>
           </Link>
 
