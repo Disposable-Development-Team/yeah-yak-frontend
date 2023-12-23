@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import Button from '@atoms/Button';
 import { FlexContainer, FlexItem } from '@atoms/Flex';
+import SelectList from '@atoms/SelectList';
 
 import Calendar from '@modules/Calendar';
 import Reservation from '@templates/Reservation';
 import { useModalContext } from '@modules/Modal/ModalContext';
 import dateFormat from 'dateformat';
-import Header from '@modules/Header';
 
 export default function Main() {
   const [values, setValues] = useState({
@@ -36,15 +37,12 @@ export default function Main() {
       // startDate: start,
       // endDate: end,
     });
-    openModal('reservation');
+    openModal();
   };
 
   return (
     <div>
       <FlexContainer $justifyContent="center" $alignItems="center" $gap="2rem">
-        <FlexItem $flex="1 1 100%">
-          <Header />
-        </FlexItem>
         <FlexItem $flex="1 1 100%">
           <Calendar onSelectSlot={handleSelect} />
         </FlexItem>
