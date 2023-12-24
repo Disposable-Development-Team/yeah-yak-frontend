@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "@config/*": ["config/*"],
       "@styles/*": ["styles/*"],
       "@images/*": ["images/*"],
       "@atoms/*": ["components/atoms/*"],

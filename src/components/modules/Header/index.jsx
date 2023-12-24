@@ -11,6 +11,7 @@ import Input from '@atoms/Input';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import logo from '@images/logo.png';
+import { SERVER_HOST } from '@config/config';
 
 const Header = () => {
   const { modalOpen, openModal, closeModal } = useModalContext();
@@ -38,7 +39,7 @@ const Header = () => {
       };
       // Make an API request using Axios
       const response = await axios.get(
-        `http://140.238.0.188:8080/reservations?name=${values.name}&phonenumber=${values.phoneNumber}`,
+        `http://${SERVER_HOST}/reservations?name=${values.name}&phonenumber=${values.phoneNumber}`,
       );
       console.log(response);
       // Check if the response code is 1
