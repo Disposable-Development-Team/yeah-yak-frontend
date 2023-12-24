@@ -10,6 +10,7 @@ import { useState } from 'react';
 import Input from '@atoms/Input';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import logo from '@images/logo.png';
 
 const Header = () => {
   const { modalOpen, openModal, closeModal } = useModalContext();
@@ -61,11 +62,16 @@ const Header = () => {
 
   return (
     <FlexContainer $justifyContent="space-between" $alignItems="center">
-      <Image width="150px" height="100px" src="https://via.placeholder.com/300x200.png?text=SONGJOOWON" link="/" />
+      <Image height="60px" src={logo} link="/" />
 
-      <Button $outline onClick={() => openModal('checkUser')}>
-        예약현황
-      </Button>
+      <FlexContainer $justifyContent="flex-end">
+        <Link to="/admin">
+          <Button color="red">관리자 화면</Button>
+        </Link>
+        <Button $outline onClick={() => openModal('checkUser')}>
+          예약현황
+        </Button>
+      </FlexContainer>
       <Modal title="정보입력" modalId="checkUser">
         <Form submitHandler={handleSubmit}>
           <FlexContainer $noWrap $gap="0" $column $alignItems="center">
