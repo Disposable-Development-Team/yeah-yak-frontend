@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TableWrapper = styled.div`
+const TableWrapper = styled.table`
   width: 100%;
   margin: 16px 0;
   border-collapse: collapse;

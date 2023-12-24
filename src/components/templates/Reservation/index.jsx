@@ -24,7 +24,6 @@ export default function Reservation({ values, onChange }) {
         <FlexContainer $justifyContent="flex-end">
           <Button type="submit">신청</Button>
         </FlexContainer>
-        <div>{JSON.stringify(values)}</div>
       </Form>
     </Modal>
   );

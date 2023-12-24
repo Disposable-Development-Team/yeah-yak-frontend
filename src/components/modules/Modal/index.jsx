@@ -25,7 +25,7 @@ const ModalContent = styled.div`
 `;
 
 const ModalHeader = styled(FlexContainer)`
-  margin-bottom: 15px;
+  margin-bottom: 2rem;
 `;
 
 const ModalTitle = styled.h2`

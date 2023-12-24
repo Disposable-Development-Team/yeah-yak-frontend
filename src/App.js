@@ -15,13 +15,6 @@ function App() {
     <div className="App">
       <ModalProvider>
         <ThemeProvider theme={theme}>
-          <Link to="/">
-            <Button $outline>홈</Button>
-          </Link>
-          <Link to="/admin">
-            <Button color="red">관리자 화면</Button>
-          </Link>
-
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/admin" element={<Admin />} />
