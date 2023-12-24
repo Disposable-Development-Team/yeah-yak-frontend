@@ -68,6 +68,7 @@ export const StyledButton = styled.button`
   border-radius: 4px;
   color: white;
   font-weight: bold;
+  font-family: inherit;
   cursor: pointer;
   padding-left: 1rem;
   padding-right: 1rem;
