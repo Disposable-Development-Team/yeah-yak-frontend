@@ -82,57 +82,6 @@ const StyledCalendar = styled(Cal)`
   }
 `;
 
-const events = [
-  {
-    createdDate: '2023-12-13T01:00:04.845105',
-    modifiedDate: '2023-12-13T03:36:31.720535',
-    id: 1,
-    name: 'kim2',
-    title: 'kim2 - 010-8424-1801',
-    room: '1',
-    phonenumber: '010-8424-1801',
-    startdate: '2023-12-02',
-    enddate: '2023-12-15',
-    status: 2,
-  },
-  {
-    createdDate: '2023-12-13T22:50:42.756391',
-    modifiedDate: '2023-12-13T22:50:42.756391',
-    id: 3,
-    name: 'Song',
-    title: 'Song - 010-2862-7686',
-    room: '1',
-    phonenumber: '010-2862-7686',
-    startdate: '2023-12-08',
-    enddate: '2023-12-19',
-    status: 1,
-  },
-  {
-    createdDate: '2023-12-13T22:50:42.756391',
-    modifiedDate: '2023-12-13T22:50:42.756391',
-    id: 4,
-    name: 'Song',
-    title: 'Song - 010-2862-7686',
-    room: '1',
-    phonenumber: '010-2862-7686',
-    startdate: '2023-12-08',
-    enddate: '2023-12-19',
-    status: 1,
-  },
-  {
-    createdDate: '2023-12-13T22:50:42.756391',
-    modifiedDate: '2023-12-13T22:50:42.756391',
-    id: 2,
-    name: 'Song',
-    title: 'Song - 010-2862-7686',
-    room: '1',
-    phonenumber: '010-2862-7686',
-    startdate: '2023-12-08',
-    enddate: '2023-12-19',
-    status: 1,
-  },
-];
-
 function Toolbar(props) {
   const { date } = props;
 
@@ -155,13 +104,14 @@ function Toolbar(props) {
   );
 }
 
-const Calendar = ({ onSelectSlot, ...props }) => {
+const Calendar = ({ onSelectSlot, events, ...props }) => {
   return (
     <CalendarContainer>
       <StyledCalendar
         localizer={localizer}
-        startAccessor="startdate"
-        endAccessor="enddate"
+        startAccessor="startDate"
+        endAccessor="endDate"
+        titleAccessor="name"
         selectable
         onSelectSlot={onSelectSlot}
         format={format}

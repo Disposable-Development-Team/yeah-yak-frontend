@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FlexContainer, FlexItem } from '@atoms/Flex';
 
 import Calendar from '@modules/Calendar';
@@ -7,6 +7,9 @@ import { useModalContext } from '@modules/Modal/ModalContext';
 import dateFormat from 'dateformat';
 import Header from '@modules/Header';
 import Image from '@atoms/Image';
+import axios from 'axios';
+import { SERVER_HOST } from '@config/config';
+import { maskingName } from 'utils/utils';
 
 export default function Main() {
   const [values, setValues] = useState({
@@ -15,6 +18,28 @@ export default function Main() {
     name: '',
     phoneNumber: '',
   });
+
+  const [events, setEvents] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://${SERVER_HOST}/reservations?`);
+      const formattedData = response.data.map(e => {
+        return {
+          ...e,
+          name: maskingName(e.name),
+        };
+      });
+      const displayData = formattedData.filter(e => e.status.status === 2 || e.status.status === 5);
+      setEvents(displayData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleChange = e => {
     setValues({
@@ -34,8 +59,6 @@ export default function Main() {
       ...values,
       startDate: formattedStart,
       endDate: formattedEnd,
-      // startDate: start,
-      // endDate: end,
     });
     openModal('reservation');
   };
@@ -47,7 +70,7 @@ export default function Main() {
           <Header />
         </FlexItem>
         <FlexItem $flex="1 1 100%">
-          <Calendar onSelectSlot={handleSelect} />
+          <Calendar onSelectSlot={handleSelect} events={events} />
         </FlexItem>
       </FlexContainer>
       <Reservation values={values} onChange={handleChange}></Reservation>
