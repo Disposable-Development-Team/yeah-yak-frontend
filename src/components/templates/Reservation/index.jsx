@@ -3,11 +3,37 @@ import { FlexContainer } from '@atoms/Flex';
 import Input from '@atoms/Input';
 import Form from '@modules/Form';
 import Modal from '@modules/Modal';
+import { SERVER_HOST } from '@config/config';
+import axios from 'axios';
+import { useModalContext } from '@modules/Modal/ModalContext';
 
 export default function Reservation({ values, onChange }) {
-  const handleSubmit = e => {
+  const { modalOpen, openModal, closeModal } = useModalContext();
+  const handleSubmit = async e => {
     e.preventDefault();
-    alert(JSON.stringify(values, null, 2));
+
+    try {
+      // POST 요청을 보낼 데이터 생성
+      const postData = {
+        name: values.name,
+        room: '1',
+        phoneNumber: values.phoneNumber,
+        startDate: values.startDate,
+        endDate: values.endDate,
+      };
+
+      // axios를 사용하여 POST 요청 보내기
+      const response = await axios.post(`http://${SERVER_HOST}/reservations`, postData);
+
+      // 성공적으로 요청이 완료되면 서버 응답을 출력
+      console.log(response.data);
+      closeModal('reservation');
+
+      // 추가로 필요한 작업 수행
+    } catch (error) {
+      // 오류 처리
+      console.error('Error submitting reservation:', error);
+    }
   };
 
   return (
