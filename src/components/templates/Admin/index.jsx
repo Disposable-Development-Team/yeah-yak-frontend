@@ -33,19 +33,10 @@ export default function Confirm() {
     }));
   };
 
-  const columns = [
-    { key: '시작일', header: '시작일' },
-    { key: '종료일', header: '종료일' },
-    { key: '신청일', header: '신청일' },
-    { key: '예약자명', header: '예약자명' },
-    { key: '전화번호', header: '전화번호' },
-    { key: '상태', header: '상태' },
-  ];
-
   return (
     <div>
       <Button onClick={fetchData}>새로고침</Button>
-      <Table data={mapDataToColumns(reservationData)} columns={columns} />
+      <Table data={mapDataToColumns(reservationData)} />
     </div>
   );
 }
