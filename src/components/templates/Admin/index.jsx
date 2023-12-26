@@ -23,7 +23,11 @@ export default function Confirm() {
   }, []);
 
   const mapDataToColumns = (data) => {
-    return data.map((item) => ({
+    if (!data || !data.item) {
+      return [];
+    }
+  
+    return data.item.map((item) => ({
       시작일자: item.startDate,
       종료일자: item.endDate,
       신청일: item.createdDate,
@@ -32,6 +36,7 @@ export default function Confirm() {
       상태: <Button>{item.status.description}</Button>,
     }));
   };
+   
 
   return (
     <div>
