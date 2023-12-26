@@ -29,7 +29,7 @@ export default function Confirm() {
       신청일: item.createdDate,
       예약자명: item.name,
       전화번호: item.phoneNumber,
-      상태: item.status.description,
+      상태: <Button>{item.status.description}</Button>,
     }));
   };
 

@@ -46,7 +46,7 @@ const Table = ({ data }) => {
         {data.map((row, rowIndex) => (
           <TableRow key={rowIndex}>
             {headers.map((header, index) => (
-              <TableCell key={index}>{typeof row[header] !== 'object' ? row[header] : ''}</TableCell>
+              <TableCell key={index}>{row[header]}</TableCell>
             ))}
           </TableRow>
         ))}
