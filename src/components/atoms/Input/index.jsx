@@ -24,6 +24,7 @@ const Input = styled.input`
   border: ${props => (props.readOnly ? 'none' : '1px solid #ccc;')};
   border-radius: 4px;
   background-color: ${props => (props.readOnly ? 'transparent' : '#fff')};
+  font-family: 'Noto Sans KR', 'Roboto';
   cursor: ${props => (props.readOnly ? 'default' : 'auto')};
 `;
 
