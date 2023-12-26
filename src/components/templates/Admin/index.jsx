@@ -35,7 +35,6 @@ export default function Confirm() {
 
   return (
     <div>
-      <Button onClick={fetchData}>새로고침</Button>
       <Table data={mapDataToColumns(reservationData)} />
     </div>
   );
