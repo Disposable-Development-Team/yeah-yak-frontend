@@ -6,13 +6,6 @@ import 'moment/locale/ko';
 import styled from 'styled-components';
 
 const localizer = momentLocalizer(moment);
-const format = {
-  selectRangeFormat: {
-    backgroundColor: '#014034', // 배경색
-    borderRadius: '0px', // 테두리 반경
-    opacity: 0.5, // 투명도
-  },
-};
 
 const CalendarContainer = styled.div`
   max-width: 1080px;
@@ -51,10 +44,6 @@ const StyledCalendar = styled(Cal)`
     min-height: 150px !important;
   }
 
-  .rbc-event {
-    background-color: #014034; // 배경색
-  }
-
   .rbc-show-more {
     color: #014034;
 
@@ -82,57 +71,6 @@ const StyledCalendar = styled(Cal)`
   }
 `;
 
-const events = [
-  {
-    createdDate: '2023-12-13T01:00:04.845105',
-    modifiedDate: '2023-12-13T03:36:31.720535',
-    id: 1,
-    name: 'kim2',
-    title: 'kim2 - 010-8424-1801',
-    room: '1',
-    phonenumber: '010-8424-1801',
-    startdate: '2023-12-02',
-    enddate: '2023-12-15',
-    status: 2,
-  },
-  {
-    createdDate: '2023-12-13T22:50:42.756391',
-    modifiedDate: '2023-12-13T22:50:42.756391',
-    id: 3,
-    name: 'Song',
-    title: 'Song - 010-2862-7686',
-    room: '1',
-    phonenumber: '010-2862-7686',
-    startdate: '2023-12-08',
-    enddate: '2023-12-19',
-    status: 1,
-  },
-  {
-    createdDate: '2023-12-13T22:50:42.756391',
-    modifiedDate: '2023-12-13T22:50:42.756391',
-    id: 4,
-    name: 'Song',
-    title: 'Song - 010-2862-7686',
-    room: '1',
-    phonenumber: '010-2862-7686',
-    startdate: '2023-12-08',
-    enddate: '2023-12-19',
-    status: 1,
-  },
-  {
-    createdDate: '2023-12-13T22:50:42.756391',
-    modifiedDate: '2023-12-13T22:50:42.756391',
-    id: 2,
-    name: 'Song',
-    title: 'Song - 010-2862-7686',
-    room: '1',
-    phonenumber: '010-2862-7686',
-    startdate: '2023-12-08',
-    enddate: '2023-12-19',
-    status: 1,
-  },
-];
-
 function Toolbar(props) {
   const { date } = props;
 
@@ -155,19 +93,43 @@ function Toolbar(props) {
   );
 }
 
-const Calendar = ({ onSelectSlot, ...props }) => {
+const dayPropGetter = date => {
+  return {
+    className: `day-${date.getDay()}`,
+  };
+};
+
+function eventPropGetter(event, start, end, isSelected) {
+  const backgroundColor = event.status === 2 ? '#014034' : '#e6e6e6';
+  const color = event.status === 2 ? '#fff' : '#999999';
+  const style = {
+    fontFamily: 'Noto Sans KR',
+    backgroundColor: backgroundColor,
+    borderRadius: '0px',
+    color: color,
+    border: '0px',
+    display: 'block',
+    outline: 'none',
+  };
+  return {
+    style: style,
+  };
+}
+
+const Calendar = ({ onSelectSlot, events, ...props }) => {
   return (
     <CalendarContainer>
       <StyledCalendar
         localizer={localizer}
-        startAccessor="startdate"
-        endAccessor="enddate"
+        startAccessor="startDate"
+        endAccessor="endDate"
+        titleAccessor="name"
         selectable
         onSelectSlot={onSelectSlot}
-        format={format}
         events={events}
-        allDayMaxRows={0}
-        view="month"
+        eventPropGetter={eventPropGetter}
+        dayPropGetter={dayPropGetter}
+        popup
         views={['month']}
         components={{
           toolbar: Toolbar,
