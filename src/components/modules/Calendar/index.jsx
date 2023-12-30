@@ -6,13 +6,6 @@ import 'moment/locale/ko';
 import styled from 'styled-components';
 
 const localizer = momentLocalizer(moment);
-const format = {
-  selectRangeFormat: {
-    backgroundColor: '#014034', // 배경색
-    borderRadius: '0px', // 테두리 반경
-    opacity: 0.5, // 투명도
-  },
-};
 
 const CalendarContainer = styled.div`
   max-width: 1080px;
@@ -49,10 +42,6 @@ const StyledCalendar = styled(Cal)`
     display: inline-table !important;
     flex: 0 0 0 !important;
     min-height: 150px !important;
-  }
-
-  .rbc-event {
-    background-color: #014034; // 배경색
   }
 
   .rbc-show-more {
@@ -104,6 +93,29 @@ function Toolbar(props) {
   );
 }
 
+const dayPropGetter = date => {
+  return {
+    className: `day-${date.getDay()}`,
+  };
+};
+
+function eventPropGetter(event, start, end, isSelected) {
+  const backgroundColor = event.status === 2 ? '#014034' : '#e6e6e6';
+  const color = event.status === 2 ? '#fff' : '#999999';
+  const style = {
+    fontFamily: 'Noto Sans KR',
+    backgroundColor: backgroundColor,
+    borderRadius: '0px',
+    color: color,
+    border: '0px',
+    display: 'block',
+    outline: 'none',
+  };
+  return {
+    style: style,
+  };
+}
+
 const Calendar = ({ onSelectSlot, events, ...props }) => {
   return (
     <CalendarContainer>
@@ -114,10 +126,10 @@ const Calendar = ({ onSelectSlot, events, ...props }) => {
         titleAccessor="name"
         selectable
         onSelectSlot={onSelectSlot}
-        format={format}
         events={events}
-        allDayMaxRows={0}
-        view="month"
+        eventPropGetter={eventPropGetter}
+        dayPropGetter={dayPropGetter}
+        popup
         views={['month']}
         components={{
           toolbar: Toolbar,
