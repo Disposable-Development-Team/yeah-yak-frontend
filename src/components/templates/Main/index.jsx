@@ -24,13 +24,15 @@ export default function Main() {
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://${SERVER_HOST}/reservations?`);
-      const formattedData = response.data.map(e => {
+      const formattedData = response.data.item.map(e => {
         return {
-          ...e,
+          startDate: e.startDate,
+          endDate: e.endDate,
+          status: e.status.status,
           name: maskingName(e.name),
         };
       });
-      const displayData = formattedData.filter(e => e.status.status === 2 || e.status.status === 5);
+      const displayData = formattedData.filter(e => e.status === 2 || e.status === 5);
       setEvents(displayData);
     } catch (error) {
       console.error('Error fetching data:', error);
