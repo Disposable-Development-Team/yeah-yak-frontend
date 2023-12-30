@@ -75,7 +75,7 @@ export default function Main() {
           <Calendar onSelectSlot={handleSelect} events={events} />
         </FlexItem>
       </FlexContainer>
-      <Reservation values={values} onChange={handleChange}></Reservation>
+      <Reservation values={values} onChange={handleChange} onClose={fetchData}></Reservation>
     </div>
   );
 }

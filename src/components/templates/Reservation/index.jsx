@@ -7,7 +7,7 @@ import { SERVER_HOST } from '@config/config';
 import axios from 'axios';
 import { useModalContext } from '@modules/Modal/ModalContext';
 
-export default function Reservation({ values, onChange }) {
+export default function Reservation({ values, onChange, onClose }) {
   const { modalOpen, openModal, closeModal } = useModalContext();
   const handleSubmit = async e => {
     e.preventDefault();
@@ -25,9 +25,8 @@ export default function Reservation({ values, onChange }) {
       // axios를 사용하여 POST 요청 보내기
       const response = await axios.post(`http://${SERVER_HOST}/reservations`, postData);
 
-      // 성공적으로 요청이 완료되면 서버 응답을 출력
-      console.log(response.data);
       closeModal('reservation');
+      onClose();
 
       // 추가로 필요한 작업 수행
     } catch (error) {
