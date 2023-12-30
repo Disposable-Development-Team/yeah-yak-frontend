@@ -24,16 +24,30 @@ export default function Main() {
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://${SERVER_HOST}/reservations?`);
-      const formattedData = response.data.item.map(e => {
-        return {
-          startDate: e.startDate,
-          endDate: e.endDate,
-          status: e.status.status,
-          name: maskingName(e.name),
-        };
-      });
-      const displayData = formattedData.filter(e => e.status === 2 || e.status === 5);
-      setEvents(displayData);
+      const formattedData = response.data.item
+        .map(e => {
+          return {
+            startDate: e.startDate,
+            endDate: e.endDate,
+            endDate: dateFormat(`${e.endDate} 12:00:00`, 'yyyy-mm-dd hh:MM:ss'),
+            // endDate: dateFormat(new Date(e.endDate).getTime() + 86400000, 'yyyy-mm-dd'),
+            status: e.status.status,
+            name: `${maskingName(e.name)} - ${e.status.description}`,
+            allDay: true,
+          };
+        })
+        .filter(e => e.status === 1 || e.status === 2)
+        .sort((a, b) => {
+          if (a.status > b.status) {
+            return -1;
+          }
+          if (a.status < b.status) {
+            return 1;
+          }
+          return 0;
+        });
+
+      setEvents(formattedData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -52,11 +66,11 @@ export default function Main() {
 
   const { modalOpen, openModal, closeModal } = useModalContext();
 
-  const handleSelect = ({ start, end }) => {
+  const handleSelect = ({ slots }) => {
     // 드래그한 날짜 범위를 콘솔에 출력
-    console.log('Selected range:', start, end);
-    const formattedStart = dateFormat(start, 'yyyy-mm-dd');
-    const formattedEnd = dateFormat(new Date(end - 1000), 'yyyy-mm-dd');
+    const formattedStart = dateFormat(slots[0], 'yyyy-mm-dd');
+    const formattedEnd = dateFormat(slots[1], 'yyyy-mm-dd');
+    // const formattedEnd = dateFormat(new Date(end - 1000), 'yyyy-mm-dd');
     setValues({
       ...values,
       startDate: formattedStart,
