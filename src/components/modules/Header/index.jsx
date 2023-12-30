@@ -39,25 +39,35 @@ const Header = () => {
       };
       // Make an API request using Axios
       const response = await axios.get(
-        `http://${SERVER_HOST}/reservations?name=${values.name}&phonenumber=${values.phoneNumber}`,
+        `http://${SERVER_HOST}/reservations?name=${values.name}&phoneNumber=${values.phoneNumber}`,
       );
-      console.log(response);
       // Check if the response code is 1
-      // if (response.data.code === 1) {
-      if (true) {
+      if (response.data.code === 'R001') {
         // If code is 1, route to /reservations/history with the reservation data
-        const reservationData = response.data; // Adjust the property based on your API response structure
+        const data = response.data.item.map(e => {
+          return {
+            신청일: e.createdDate,
+            시작일자: e.startDate,
+            종료일자: e.endDate,
+            상태: e.status.description,
+          };
+        });
         // Use the react-router-dom history object to navigate to the new route
         closeModal('checkUser');
-        navigate('/reservations/history', { state: { data: reservationData, ...userInfo } });
-      } else {
+        navigate('/reservations/history', { state: { data: data, ...userInfo } });
+      } else if (response.data.code === 'E001') {
         // Handle other cases or show an error message
-        alert('Reservation failed. Please try again.');
+        alert('예약내역이 존재하지 않습니다.');
+      } else {
+        alert('예기치 못한 오류가 발생했습니다.');
       }
     } catch (error) {
-      // Handle API request error
-      console.error('Error making API request:', error);
-      alert('An error occurred. Please try again.');
+      if (error.response.status === 400) {
+        // Handle other cases or show an error message
+        alert('예약내역이 존재하지 않습니다.');
+      } else {
+        alert('예기치 못한 오류가 발생했습니다.');
+      }
     }
   };
 
