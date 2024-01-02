@@ -68,7 +68,7 @@ export default function Main() {
 
   const handleSelect = ({ slots }) => {
     const formattedStart = dateFormat(slots[0], 'yyyy-mm-dd');
-    const formattedEnd = dateFormat(slots[1] || slots[0], 'yyyy-mm-dd');
+    const formattedEnd = dateFormat(slots[slots.length - 1], 'yyyy-mm-dd');
     if (formattedStart < dateFormat(new Date(), 'yyyy-mm-dd')) {
       return;
     }
