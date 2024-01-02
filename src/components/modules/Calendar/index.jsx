@@ -46,6 +46,7 @@ const StyledCalendar = styled(Cal)`
 
   .rbc-show-more {
     color: #014034;
+    background-color: #ffffff00;
 
     &:hover {
       color: #91d9c4;

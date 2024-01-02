@@ -76,6 +76,11 @@ export const StyledButton = styled.button`
     margin-left: 1rem;
   }
 
+  &:disabled {
+    pointer-events: none;
+    filter: opacity(30%);
+  }
+
   ${colorStyles}
   ${sizeStyles}
   ${fullWidthStyle}
