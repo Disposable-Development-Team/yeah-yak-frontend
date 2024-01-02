@@ -74,7 +74,8 @@ export default function Main() {
     }
     console.log(slots);
     setValues({
-      ...values,
+      name: '',
+      phoneNumber: '',
       startDate: formattedStart,
       endDate: formattedEnd,
     });
