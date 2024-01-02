@@ -67,10 +67,12 @@ export default function Main() {
   const { modalOpen, openModal, closeModal } = useModalContext();
 
   const handleSelect = ({ slots }) => {
-    // 드래그한 날짜 범위를 콘솔에 출력
     const formattedStart = dateFormat(slots[0], 'yyyy-mm-dd');
-    const formattedEnd = dateFormat(slots[1], 'yyyy-mm-dd');
-    // const formattedEnd = dateFormat(new Date(end - 1000), 'yyyy-mm-dd');
+    const formattedEnd = dateFormat(slots[1] || slots[0], 'yyyy-mm-dd');
+    if (formattedStart < dateFormat(new Date(), 'yyyy-mm-dd')) {
+      return;
+    }
+    console.log(slots);
     setValues({
       ...values,
       startDate: formattedStart,
