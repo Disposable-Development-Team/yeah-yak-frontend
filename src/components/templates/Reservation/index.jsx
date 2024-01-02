@@ -41,6 +41,7 @@ export default function Reservation({ values, onChange, onClose }) {
       // 추가로 필요한 작업 수행
     } catch (error) {
       // 오류 처리
+      window.alert('서버에 문제가 발생했습니다. 관리자에게 문의해주세요.');
       console.error('Error submitting reservation:', error);
     } finally {
       setIsSubmitting(false);
@@ -59,7 +60,9 @@ export default function Reservation({ values, onChange, onClose }) {
           <Input label="전화번호" name="phoneNumber" value={values.phoneNumber} onChange={onChange} />
         </FlexContainer>
         <FlexContainer $justifyContent="flex-end">
-          <Button type="submit">{isSubmitting ? '신청 중...' : '신청'}</Button>
+          <Button disabled={isSubmitting} type="submit">
+            {isSubmitting ? '신청 중...' : '신청'}
+          </Button>
         </FlexContainer>
       </Form>
     </Modal>

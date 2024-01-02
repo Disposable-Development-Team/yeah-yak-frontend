@@ -70,7 +70,9 @@ export default function ReservationHistory(props) {
           상태: (
             <CustomButton
               $status={e.status.status}
-              onClick={async () => {
+              onClick={async event => {
+                event.target.innerText = '취소 중';
+                event.target.disabled = true;
                 await cancelReservation(e.id);
                 fetchData();
               }}
