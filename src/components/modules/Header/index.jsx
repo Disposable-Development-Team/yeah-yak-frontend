@@ -76,9 +76,6 @@ const Header = () => {
       <Image height="60px" src={logo} link="/" />
 
       <FlexContainer $justifyContent="flex-end">
-        <Link to="/admin">
-          <Button color="red">관리자 화면</Button>
-        </Link>
         <Button $outline onClick={() => openModal('checkUser')}>
           예약현황
         </Button>
